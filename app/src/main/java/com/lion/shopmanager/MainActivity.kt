@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         }
         // 초기화면
         replaceFragment(MainActivity.FragmentName.HOME_FRAGMENT,false,false,null)
+        // test
     }
 
     // 프래그먼트를 교체하는 함수
