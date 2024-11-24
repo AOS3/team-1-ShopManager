@@ -13,6 +13,8 @@ import androidx.fragment.app.commit
 import com.google.android.material.transition.MaterialSharedAxis
 import com.lion.shopmanager.databinding.ActivityMainBinding
 import com.lion.shopmanager.fragment.HomeFragment
+import com.lion.shopmanager.fragment.SearchFragment
+import com.lion.shopmanager.fragment.ShowFragment
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -28,8 +30,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         // 초기화면
-        replaceFragment(MainActivity.FragmentName.HOME_FRAGMENT,false,false,null)
-        // test
+        replaceFragment(FragmentName.SEARCH_FRAGMENT,false,false,null)
     }
 
     // 프래그먼트를 교체하는 함수
@@ -37,7 +38,9 @@ class MainActivity : AppCompatActivity() {
         // 프래그먼트 객체
         val newFragment = when(fragmentName){
             // 메인 화면
-            MainActivity.FragmentName.HOME_FRAGMENT -> HomeFragment()
+            FragmentName.HOME_FRAGMENT -> HomeFragment()
+            FragmentName.SEARCH_FRAGMENT -> SearchFragment()
+            FragmentName.SHOW_FRAGMENT -> ShowFragment()
         }
 
         // bundle 객체가 null이 아니라면
@@ -98,6 +101,10 @@ class MainActivity : AppCompatActivity() {
     enum class FragmentName(var number:Int, var str:String){
         // 메인 화면
         HOME_FRAGMENT(1, "HomeFragment"),
+        // 검색 화면
+        SEARCH_FRAGMENT(2,"SearchFragment"),
+        // 상품 정보
+        SHOW_FRAGMENT(3,"ShowFragment")
 
     }
 }
