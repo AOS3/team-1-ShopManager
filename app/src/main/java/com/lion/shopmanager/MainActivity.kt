@@ -13,6 +13,9 @@ import androidx.fragment.app.commit
 import com.google.android.material.transition.MaterialSharedAxis
 import com.lion.shopmanager.databinding.ActivityMainBinding
 import com.lion.shopmanager.fragment.HomeFragment
+import com.lion.shopmanager.util.Constants
+import com.lion.shopmanager.util.FragmentName
+import com.lion.shopmanager.util.entryFragment
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         // 초기화면
-        replaceFragment(MainActivity.FragmentName.HOME_FRAGMENT,false,false,null)
+        entryFragment(HomeFragment())
     }
 
     // 프래그먼트를 교체하는 함수
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         // 프래그먼트 객체
         val newFragment = when(fragmentName){
             // 메인 화면
-            MainActivity.FragmentName.HOME_FRAGMENT -> HomeFragment()
+            FragmentName.HOME_FRAGMENT -> HomeFragment()
         }
 
         // bundle 객체가 null이 아니라면
@@ -61,10 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 프래그먼트를 BackStack에서 제거하는 메서드
-    fun removeFragment(fragmentName: MainActivity.FragmentName){
-        supportFragmentManager.popBackStack(fragmentName.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
+
 
     // 키보드 올리는 메서드
     fun showSoftInput(view: View){
@@ -93,10 +93,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // 프래그먼트들을 나타내는 값들
-    enum class FragmentName(var number:Int, var str:String){
-        // 메인 화면
-        HOME_FRAGMENT(1, "HomeFragment"),
 
-    }
 }
